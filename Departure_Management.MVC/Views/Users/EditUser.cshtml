@@ -1,0 +1,59 @@
+﻿@model Departure_Management.MVC.Models.EmployeeVM
+
+@{
+    ViewData["Title"] = "EditUser";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a> <i class="fa fa-angle-right"></i> Edit User</li>
+</ol>
+
+<div class="grid-form1">
+    <h3>Edit User : <span>@Model.FirstName @Model.LastName</span></h3>
+    <div class="tab-content tab-pane active" id="horizontal-form">
+        
+        <form class="form-horizontal" asp-action="EditUser" method="post">
+            
+			<div class="form-group">
+				<label asp-for="FirstName" class="col-sm-4 control-label">First Name :</label>
+				<div class="col-sm-6">
+					<input asp-for="FirstName" type="text" class="form-control1" />
+				</div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName" class="col-sm-4 control-label">Last Name :</label>
+                <div class="col-sm-6">
+                    <input asp-for="LastName" type="text" class="form-control1" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="col-sm-4 control-label">E-mail :</label>
+                <div class="col-sm-6">
+                    <input asp-for="Email" type="text" class="form-control1" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="col-sm-4 control-label">Password :</label>
+                <div class="col-sm-6">
+                    <input asp-for="Password" type="password" class="form-control1" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Role :</label>
+                <div class="col-sm-6">
+                    <input asp-for="Role" type="radio" value="Administrator" style="width: 20%;" checked="checked">Administrator
+                    <input asp-for="Role" type="radio" value="Employee" style="width: 20%;">Employee
+                </div>
+            </div>
+
+            <div class="row col-sm-offset-4">
+					<button type="submit" class="btn btn-primary">Save</button>
+					<a asp-controller="Home" asp-action="Index"><button type="button" class="btn btn-default">Cancel</button></a>
+			</div>
+        </form>
+    </div>
+ </div>

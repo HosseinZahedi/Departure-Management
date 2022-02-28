@@ -1,0 +1,52 @@
+﻿@model Departure_Management.MVC.Models.EmployeeLeaveRequestViewVM
+
+@{
+    ViewData["Title"] = "MyLeaves";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/user/home">Home</a> <i class="fa fa-angle-right"></i> My Leaves</li>
+</ol>
+<div class="agile-grids">
+
+    <div class="agile-tables">
+        <h3>My Leaves</h3>
+
+        <table id="table-two-axis" class="two-axis">
+            <thead>
+            <tr>
+                <th>From Date</th>
+                <th>To Date</th>
+                <th>No of Days</th>
+                <th>Leave Type</th>
+                <th>َApproval Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.LeaveRequests)
+            {
+                <tr>
+                    <td>@item.StartDate.ToString("dd/MM/yyyy")</td>
+                    <td>@item.EndDate.ToString("dd/MM/yyyy")</td>
+                    <td>@item.EndDate.Subtract(item.StartDate).TotalDays.ToString()</td>
+                    <td>@item.LeaveType.Name</td>
+                    <td>
+                        @if (item.Approved == true)
+                        {
+                            <span class="badge badge-success">Approved</span>
+                        }
+                        else if (item.Approved == false)
+                        {
+                            <span class="badge badge-danger">Rejected</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-warning">Pending Approval</span>
+                        }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

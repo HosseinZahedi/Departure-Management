@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Departure Management</title>
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/morris.css" />
+    <link rel="stylesheet" href="~/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/css/icon-font.min.css" type="text/css" />
+    <link rel="shortcut icon" href="~/img/favicon.png" />
+    <link rel="stylesheet" href="~/css/fullcalendar.min.css" />
+    <link href="~/css/fullcalendar.print.min.css" media="print" />
+    <link rel="stylesheet" href="~/css/jquery-ui.css" type="text/css">
+    <link rel="stylesheet" href="~/css/table-style.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/basictable.css" type="text/css" />
+    
+    <script src="~/js/jquery-2.2.0.min.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/js/fullcalendar.min.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/js/jquery.basictable.min.js"></script>
+    <script src="~/js/bootbox.min.js"></script>
+
+    <style type="text/css">
+
+        .filterStatus {
+            position: relative;
+            top: 2px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <div class="left-content">
+        <div class="mother-grid-inner">
+            <div class="header-main">
+                <div class="" style="float: left;">
+                    <h2>
+                        <a asp-controller="Home" asp-action="Index">Departure Management System</a>
+                    </h2>
+                </div>
+
+                <partial name = "_LoginPartial.cshtml" />
+
+                <div class="clearfix"> </div>
+            </div>
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a asp-controller="Home" asp-action="Index">Home</a> <i class="fa fa-angle-right"></i>
+                </li>
+            </ol>
+
+            
+
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+            
+            <div class="copyrights">
+                <p>&copy; 2022 Developed by Hossein Zahedi. All Rights Reserved </p>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="sidebar-menu">
+        <header class="logo1">
+            <a href="#" class="sidebar-icon">
+                <span class="fa fa-bars"></span>
+            </a>
+        </header>
+        <div style="border-top: 1px ridge rgba(255, 255, 255, 0.15)"></div>
+        <div class="menu">
+            <ul id="menu">
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        <i class="fa fa-home"></i> <span>Home</span>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <li>
+                        <a asp-controller="Users" asp-action="ManageUsers">
+                            <i class="fa fa-users"></i> <span>Manage Users</span>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="LeaveRequests" asp-action="Index">
+                            <i class="fa fa-calendar-check-o"></i> <span>Manage Leaves</span>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                }
+
+                <li>
+                    <a asp-controller="LeaveRequests" asp-action="Create">
+                        <i class="fa fa-calendar-plus-o"></i> <span>Apply Leave</span>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-controller="LeaveRequests" asp-action="MyLeaves">
+                        <i class="fa fa-calendar-check-o"></i> <span>My Leaves</span>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-controller="Users" asp-action="ChangePassword">
+                        <i class="fa fa-key"></i> <span>Change Password</span>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<script>
+    var toggle = true;
+
+    $(".sidebar-icon").click(function() {
+        if (toggle) {
+            $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+            $("#menu span").css({ "position": "absolute" });
+        } else {
+            $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+            setTimeout(function() {
+                    $("#menu span").css({ "position": "relative" });
+                },
+                400);
+        }
+
+        toggle = !toggle;
+    });
+</script>
+
+<script src="~/js/bootstrap.min.js"></script>
+@await RenderSectionAsync("Scripts", false)
+</body>
+</html>
+

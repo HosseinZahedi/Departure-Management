@@ -1,0 +1,41 @@
+﻿@model List<Departure_Management.MVC.Models.EmployeeVM>
+@{
+    ViewData["Title"] = "ManageUsers";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/user/home">Home</a> <i class="fa fa-angle-right"></i> Manage Users</li>
+</ol>
+<div class="agile-grids">
+    <div class="agile-tables">
+
+        <h3>Manage Users</h3>
+        <table id="table-two-axis" class="two-axis">
+            <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>E-mail</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName @item.LastName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Role</td>
+                    <td>
+                        <a asp-action="EditUser" asp-route-id=@item.Id><i class="fa fa-edit" title="EDIT"></i></a>
+                        <a><i class="fa fa-ban" title="BLOCK"></i></a>
+                        <a><i class="fa fa-unlock" title="UNLOCK"></i></a>
+                        <a><i class="fa fa-trash-o" title="DELETE"></i></a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+    </div>
+</div>

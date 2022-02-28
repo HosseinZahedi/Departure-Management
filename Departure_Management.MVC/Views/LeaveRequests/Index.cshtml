@@ -1,0 +1,78 @@
+﻿@model Departure_Management.MVC.Models.AdminLeaveRequestViewVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/user/home">Home</a> <i class="fa fa-angle-right"></i> Manage Leaves</li>
+</ol>
+<div class="agile-grids">
+
+    <div class="agile-tables">
+
+        <h3>Manage Leaves</h3>
+        <table id="table-two-axis" class="two-axis">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>From Date</th>
+                <th>To Date</th>
+                <th>No of Days</th>
+                <th>Leave Type</th>
+                <th>Approval Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.LeaveRequests)
+            {
+                    <tr>
+                        <td>@item.Employee.FirstName @item.Employee.LastName</td>
+                        <td>@item.StartDate.ToString("dd/MM/yyyy")</td>
+                        <td>@item.EndDate.ToString("dd/MM/yyyy")</td>
+                        <td>@item.EndDate.Subtract(item.StartDate).TotalDays.ToString()</td>
+                        <td>@item.LeaveType.Name</td>
+                        <td>
+                            @if (item.Approved == true)
+                            {
+                                <span class="badge badge-success">Approved</span>
+                            }
+                            else if (item.Approved == false)
+                            {
+                                <span class="badge badge-danger">Rejected</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Pending Approval</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Approved == true)
+                            {
+                                <a asp-action="ApproveRequest" asp-route-requestId="@item.Id" asp-route-approved="false">
+                                    <span class="label-danger" style="color: white;">REJECT</span>
+                                </a>
+                            }
+                            else if (item.Approved == false)
+                            {
+                                <a asp-action="ApproveRequest" asp-route-requestId="@item.Id" asp-route-approved="true">
+                                    <span class="label-success" style="color: white;">ACCEPT</span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-action="ApproveRequest" asp-route-requestId="@item.Id" asp-route-approved="true">
+                                    <span class="label-success" style="color: white;">ACCEPT</span>
+                                </a>
+                                <a asp-action="ApproveRequest" asp-route-requestId="@item.Id" asp-route-approved="false">
+                                    <span class="label-danger" style="color: white;">REJECT</span>
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

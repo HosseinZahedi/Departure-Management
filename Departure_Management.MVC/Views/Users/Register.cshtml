@@ -1,0 +1,82 @@
+﻿@model Departure_Management.MVC.Models.RegisterVM
+
+@{
+    ViewData["Title"] = "Register";
+	Layout = null;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<link rel="stylesheet" href="~/css/bootstrap.min.css" type='text/css' />
+<link rel="stylesheet" href="~/css/style.css" type='text/css' />
+<link rel="stylesheet" href="~/css/morris.css" type="text/css"/>
+<link rel="stylesheet" href="~/css/font-awesome.css" />
+<link rel="stylesheet" href="~/css/jquery-ui.css" /> 
+
+<script src="~/js/jquery-2.2.0.min.js"></script>
+
+<link rel="shortcut icon" href="~/img/favicon.png">
+</head> 
+<body>
+	<div class="main-wthree">
+	<div class="container">
+	<div class="sin-w3-agile">
+		<h2>Sign Up</h2>
+
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<form asp-action="Register">
+			<div class="username">
+				<span asp-for="FirstName" class="username">First Name:</span>
+				<input asp-for="FirstName" type="text" class="name" placeholder="First Name" required>
+				<div class="clearfix"></div>
+			</div>
+			<div class="username">
+				<span asp-for="LastName" class="username">Last Name:</span>
+				<input asp-for="LastName" type="text" class="name" placeholder="Last Name" required>
+				<div class="clearfix"></div>
+			</div>
+			<div class="username">
+				<span asp-for="Email" class="username">Email:</span>
+				<input asp-for="Email" type="text" class="name" placeholder="E-mail" required>
+				<div class="clearfix"></div>
+			</div>
+			<div class="username">
+				<span asp-for="PhoneNumber" class="username">Phone Number:</span>
+				<input asp-for="PhoneNumber" type="text" class="name" placeholder="Phone Number" required>
+				<div class="clearfix"></div>
+			</div>
+			<div class="password-agileits">
+				<span asp-for="Password" class="username">Password:</span>
+				<input asp-for="Password" type="password" class="password" required>
+				<div class="clearfix"></div>
+			</div>
+			<div class="password-agileits">
+				<span asp-for="ConfirmPassword" class="username">Confirm Password:</span>
+				<input asp-for="ConfirmPassword" type="password" class="password" required>
+				<div class="clearfix"></div>
+			</div>
+			<div class="login-w3">
+					<input type="submit" value="Register" class="login">
+			</div>
+			<div class="clearfix"></div>
+		</form>
+		<div class="back">
+						<a asp-action="Login">LOGIN</a>
+				</div>
+				<div class="footer">
+					<p>&copy; 2018 D&D by Navin. All rights reserved.</p>
+				</div>
+	</div>
+	</div>
+	</div>
+
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

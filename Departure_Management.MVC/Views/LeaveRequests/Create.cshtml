@@ -1,0 +1,62 @@
+﻿@model Departure_Management.MVC.Models.CreateLeaveRequestVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/user/home">Home</a> <i class="fa fa-angle-right"></i> Apply Leave</li>
+</ol>
+
+<div class="grid-form1">
+    <h3>Request For Leave</h3>
+    <div class="tab-content tab-pane active" id="horizontal-form">
+
+        <form asp-action="Create" class="form-horizontal" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="col-sm-4 control-label">From Date :</label>
+                <div class="col-sm-6">
+                    <input asp-for="StartDate" type="date" placeholder="From Date" class="form-control1"/>
+                </div>
+
+                <label asp-validation-for="StartDate" class="alert-danger col-sm-6 col-sm-offset-4"></label>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="col-sm-4 control-label">To Date :</label>
+                <div class="col-sm-6">
+                    <input asp-for="EndDate" type="date" placeholder="To Date" class="form-control1"/>
+                </div>
+
+                <label asp-validation-for="EndDate" class="alert-danger col-sm-6 col-sm-offset-4"></label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Leave Type :</label>
+                <div class="col-sm-6">
+                    <select asp-for="LeaveTypeId" asp-items="Model.LeaveTypes" class="form-control1">
+                        <option value="">Select Leave Type</option>
+                    </select>
+                </div>
+
+                <label class="alert-danger col-sm-6 col-sm-offset-4" if="${#fields.hasErrors('leaveType')}" errors="*{leaveType}"></label>
+            </div>
+            <div class="form-group">
+                <label asp-for="RequestComments" class="col-sm-4 control-label">Leave Reason :</label>
+                <div class="col-sm-6">
+                    <textarea asp-for="RequestComments" placeholder="Leave Reason" class="form-control1" style="height: 100px;"></textarea>
+                </div>
+
+                <label asp-validation-for="RequestComments" class="alert-danger col-sm-6 col-sm-offset-4"></label>            
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-4">
+                    <button type="submit" value="Request Leave" class="btn btn-primary">Apply Leave</button>
+                    <a href="/user/home">
+                        <button type="button" class="btn btn-default">Cancel</button>
+                    </a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

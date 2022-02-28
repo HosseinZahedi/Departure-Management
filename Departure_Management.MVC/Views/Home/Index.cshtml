@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="grids">
+    <div class="agile-calendar-grid">
+        <div class="page">
+            <div class="">
+                <span class="label label-primary"><input type="checkbox" id="pending" value="pending" class="filterStatus" checked> Pending</span>
+                <span class="label label-success"><input type="checkbox" id="accepted" value="accepted" class="filterStatus" checked> Accepted</span>
+                <span class="label label-danger"><input type="checkbox" id="rejected" value="rejected" class="filterStatus" checked> Rejected</span>
+            </div>
+
+            <div class="w3l-calendar-left">
+                <div class="monthly" id="mycalendar"></div>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+
+<div class="inner-block">
+
+</div>
+
+@section Scripts {
+    <script>
+        var url = '/LeaveRequests/GetAllLeaves?pending='+$('#pending').is(':checked')+'&accepted='+$('#accepted').is(':checked')+'&rejected='+$('#rejected').is(':checked')+'';
+        
+        $(document).ready(function() {
+            
+        $('#mycalendar').fullCalendar({
+        header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,listWeek'
+        },
+        defaultDate: moment().format("YYYY-MM-DD"),
+        eventLimit: true,
+        events: url
+        });
+
+         $('input:checkbox').change(function(){
+    	
+         	$('#mycalendar').fullCalendar('removeEventSource',url);
+         	url = '/LeaveRequests/GetAllLeaves?pending='+$('#pending').is(':checked')+'&accepted='+$('#accepted').is(':checked')+'&rejected='+$('#rejected').is(':checked')+'';
+
+         	$('#mycalendar').fullCalendar('removeEvents');
+         	$('#mycalendar').fullCalendar('addEventSource',url);
+
+         });
+
+        });
+    </script>   
+}
