@@ -7,7 +7,7 @@ public interface IAuthService
     Task<AuthResponse> Login(AuthRequest request);
     Task<RegistrationResponse> Register(RegistrationRequest request);
     Task<ChangePasswordResponse> ChangePassword(ChangePasswordRequest request);
-    List<Employee> GetAllUsers();
+    Task<List<Employee>> GetAllUsers();
     Task<Employee> GetSingleUser(string userId);
     Task<bool> EditUser(Employee employee);
 }

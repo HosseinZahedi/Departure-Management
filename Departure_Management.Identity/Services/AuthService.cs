@@ -119,9 +119,8 @@ public class AuthService : IAuthService
         return new ChangePasswordResponse() {UserId = userId};
     }
 
-    public List<Employee> GetAllUsers()
+    public async Task<List<Employee>> GetAllUsers()
     {
-        
         var employees = _userManager.Users;
         return employees.Select(q => new Employee
         {

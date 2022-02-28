@@ -36,9 +36,9 @@ public class AccountController : ControllerBase
 
     [HttpGet("GetAllUsers")]
     [Authorize(Roles = "Administrator")]
-    public ActionResult<List<Employee>> GetAllUsers()
+    public async Task<ActionResult<List<Employee>>> GetAllUsers()
     {
-        return Ok( _authenticationService.GetAllUsers());
+        return Ok(await _authenticationService.GetAllUsers());
     }
 
     [HttpGet("GetSingleUser/{id}")]
