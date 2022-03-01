@@ -128,7 +128,7 @@ public class AuthService : IAuthService
             Email = q.Email,
             FirstName = q.FirstName,
             LastName = q.LastName,
-            Role = _userManager.IsInRoleAsync(q, "Employee").Result ? "Employee" : "Administrator"
+            Role = _userManager.IsInRoleAsync(q, "Employee").GetAwaiter().GetResult() ? "Employee" : "Administrator"
         }).ToList();
     }
 
